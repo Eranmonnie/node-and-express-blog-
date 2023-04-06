@@ -1,14 +1,6 @@
-// console.log(global)
+const {name, obj} = require('./module')
+console.log(`${name}, ${obj}`)
 
-global.setTimeout(() => {
-    console.log("hii")
-    clearInterval(int)
-}, 3000);
-
-
-
-const int = global.setInterval(() => {
-    console.log("work")
-}, 1000);
- // setinterval:runs what is inside each time its set 
-// clerinterval: stops program after time 
+const mod = require('./module')
+console.log(mod)
+// can import them all or in pieces
