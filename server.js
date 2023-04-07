@@ -5,6 +5,7 @@ const _ = require('lodash')
 const state = http.createServer((req, res)=>{  
     console.log(req.url, req.method)
     console.log(_.random(1, 20))
+    //using lodash
 
     res.setHeader('Content-Type', 'text/html')
 
