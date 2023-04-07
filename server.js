@@ -1,8 +1,10 @@
 const http = require('http')
 const fs = require('fs')
+const _ = require('lodash')
 
 const state = http.createServer((req, res)=>{  
     console.log(req.url, req.method)
+    console.log(_.random(1, 20))
 
     res.setHeader('Content-Type', 'text/html')
 
@@ -50,3 +52,4 @@ state.listen('3000', 'localhost', ()=>{
     console.log("listening at port 3000")
     console.log("http://localhost:3000")
 })
+//installed nodemon globally 
