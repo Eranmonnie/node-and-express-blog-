@@ -10,14 +10,23 @@ const state = http.createServer((req, res)=>{
 
     if (req.url === '/'){
         path += 'home.html'
+        res.statusCode = 200
        }
        
     else if(req.url === '/about'){
     path += 'about.html'
+    res.statusCode = 200
     }
-    
+
+    else if(req.url === '/about-me'){
+        res.statusCode = 301
+        res.setHeader('Location', '/about')
+        res.end()
+        }
+
     else{
         path += '404.html'
+        res.statusCode = 404
         }
    
 
