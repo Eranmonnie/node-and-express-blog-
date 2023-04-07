@@ -1,10 +1,40 @@
 const http = require('http')
+const fs = require('fs')
 
-const state = http.createServer((req, res)=>{
-    console.log('request made')
+const state = http.createServer((req, res)=>{  
+    console.log(req.url, req.method)
+
     res.setHeader('Content-Type', 'text/html')
-    res.write("<h1>hello world</h1>")
-    res.end()
+
+    let path = './views/';
+
+    if (req.url === '/'){
+        path += 'home.html'
+       }
+       
+    else if(req.url === '/about'){
+    path += 'about.html'
+    }
+    
+    else{
+        path += '404.html'
+        }
+   
+
+    
+    // reading html file
+    fs.readFile(path, (err, data)=>{
+        if (err){
+            console.log(err)
+            res.end()
+        }
+        else{
+            //the res.write can be excluded if you are writing only once and the data object would be passed to res.end 
+            res.write(data)
+            res.end()
+        }
+    })
+    
 })
 
 state.listen('3000', 'localhost', ()=>{
