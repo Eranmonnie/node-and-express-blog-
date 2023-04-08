@@ -9,20 +9,34 @@ app.listen(3000)
 
 //sending html responses to route
 app.get('/', (req, res)=>{
-    res.render('home')
+
+    const blogs = [
+
+    { title:"omo", body:"fjjrsctvshhybuniopxf sggbosndfobinsdobnadon baoufnboaidnfb;iodafbdfbdf"},
+    { title:"ttt", body:"drgjdctvybuniopfgfxfxfmx fsggbgmxfgmosndfo xmfnsdobnadonb xmaoufnboaidnfb;iodafkkbdfbdf"},
+    { title:"omuuo", body:"ydjrddctvxf xmybdfhsrtjii lilifvgnzgargunigopxfhxfsggbo sndfobadonbaoufnboaibdf"},
+ 
+    ]
+       
+    
+    res.render('home', {title:'home', blogs})
 })
 
 app.get('/about', (req, res)=>{
-    res.render('about')
+    res.render('about', {title:'about'})
+})
+
+app.get('/blogs/create', (req, res)=>{
+    res.render('create', {title:'create'})
 })
 
 //redirecting 
-app.get('/about-us', (req, res)=>{
-    res.redirect('/about')
-})
+// app.get('/about-us', (req, res)=>{
+//     res.redirect('/about')
+// })
 
 
 //404
 app.use((req, res)=>{
-    res.status(404).render('404')
+    res.status(404).render('404', {title:'404'})
 })

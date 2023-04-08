@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hello</title>
+    <title>Blog | <%= title %></title>
 </head>
-<body>
+<body width ="100%" style="box-sizing: border-box;margin: 0; padding: 0;">
+    <div class="links" style="display: flex; justify-content: center; gap :1em;">
+        <a href="/about">About</a>
+        <a href="/">Home</a>
+        </div>
+
     <div class="content" style=" border: 1px solid royalblue;">
     <h1 style="text-align: center;">hello world</h1>
     <h2 style="text-align: center;">My name is feranmi</h2>
-    <a href="/about">About</a>
-    <a href="/">Home</a>
+
+        <div class="blogs" style="text-align: left; padding: 3em; border: 1px solid red;">
+            <% if (blogs.length > 0) { %>
+
+                <% blogs.forEach (blog =>{ %>
+                    <h1 class="title"> <%= blog.title %> </h1>
+                    <p class="body"> <%= blog.body %> </p>
+
+                <% })%>
+
+            <% } else { %>
+                <p>There ar no blogs to  display...</p>
+                <% } %>
+        </div>
     </div>
 </body>
 </html>
