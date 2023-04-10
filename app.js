@@ -19,6 +19,42 @@ app.use(express.static('public')) //these is the directory where all our static 
 
 
 
+//testing mongodbs add feature for data 
+app.get('/add-blog', (req, res)=>{
+    const blog = new Blog({
+        title:'blog',
+        snippet:'my blog', 
+        body:'this is my first blog' ,
+    })
+
+    blog.save()
+    .then(result=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
+app.get('/display', (req, res)=>{
+    Blog.find()
+    .then((result) =>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
+
+app.get('/single-blog', (req,res)=>{
+    Blog.findById('6433e55c4ebb940ddd168ece')
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+})
 //does the same thing as the one bellow 
 app.use(morgan('dev'))
 

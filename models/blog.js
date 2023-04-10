@@ -17,4 +17,4 @@ const blogschema = new schema({
 }, {timestamps:true,});
 
 const Blog = mongoose.model('Blog', blogschema)
-module.esports = Blog
+module.exports = Blog
