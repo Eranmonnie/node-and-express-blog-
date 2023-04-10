@@ -55,6 +55,7 @@ app.get('/single-blog', (req,res)=>{
         console.log(err)
     })
 })
+
 //does the same thing as the one bellow 
 app.use(morgan('dev'))
 
@@ -68,21 +69,22 @@ app.use(morgan('dev'))
 // })
 //sending html responses to route
 app.get('/', (req, res)=>{
-
-    const blogs = [
-
-    { title:"omo", body:"fjjrsctvshhybuniopxf sggbosndfobinsdobnadon baoufnboaidnfb;iodafbdfbdf"},
-    { title:"ttt", body:"drgjdctvybuniopfgfxfxfmx fsggbgmxfgmosndfo xmfnsdobnadonb xmaoufnboaidnfb;iodafkkbdfbdf"},
-    { title:"omuuo", body:"ydjrddctvxf xmybdfhsrtjii lilifvgnzgargunigopxfhxfsggbo sndfobadonbaoufnboaibdf"},
- 
-    ]
-       
-    
-    res.render('home', {title:'home', blogs})
+    res.redirect('/blogs')
 })
 
 app.get('/about', (req, res)=>{
     res.render('about', {title:'about'})
+})
+
+app.get('/blogs', (req, res)=>{
+    Blog.find()
+    .then((result)=>{
+        res.render('home', {title:'All Blogs', blogs:result})
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+   
 })
 
 app.get('/blogs/create', (req, res)=>{
