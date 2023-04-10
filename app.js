@@ -1,6 +1,15 @@
 const express = require('express')
 const morgan = require('morgan')
+const mongoose = require('mongoose')
+
+//deploy express app
 const app = express()
+
+//database connection method 
+const dbURI = 'mongodb+srv://ajala:test@first-cloud-database.iga54vy.mongodb.net/blog-tuts?retryWrites=true&w=majority'
+mongoose.connect(dbURI)
+.then(result=>app.listen(3000)) // listen for request at port 3000
+.catch((err)=>console.log(err))
 
 //useing ejs 
 app.set('view engine', 'ejs')
@@ -8,8 +17,7 @@ app.set('view engine', 'ejs')
 //adding static files to our html 
 app.use(express.static('public')) //these is the directory where all our static files will reside  
 
-// listen for requesta at port 3000
-app.listen(3000)
+
 
 //does the same thing as the one bellow 
 app.use(morgan('dev'))
