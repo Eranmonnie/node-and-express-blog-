@@ -1,12 +1,27 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 //useing ejs 
 app.set('view engine', 'ejs')
 
+//adding static files to our html 
+app.use(express.static('public')) //these is the directory where all our static files will reside  
+
 // listen for requesta at port 3000
 app.listen(3000)
 
+//does the same thing as the one bellow 
+app.use(morgan('dev'))
+
+// using middleware you get we dont need it since we have inastalled morgan 
+// app.use((req, res, next)=>{
+//     console.log("new request made")
+//     console.log("host: ",req.hostname)
+//     console.log("path: ", req.path)
+//     console.log("method: ",req.method)
+//     next()
+// })
 //sending html responses to route
 app.get('/', (req, res)=>{
 

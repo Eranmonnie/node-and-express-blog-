@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | <%= title %></title>
-</head>
-<body>
+<%- include('./partials/header.ejs') %>
     <div class="content" style=" border: 1px solid royalblue; padding: 3em;">
         <form action="" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
             <label for="title"> Blog title</label>
@@ -15,12 +7,6 @@
             <textarea name="blog body" id="body" cols="30" rows="10"></textarea>
             <button>submit</button>    
         </form>
-        
-        <div class="links" style="display: flex; justify-content: center; gap :1em;">
-        <a href="/about">About</a>
-        <a href="/">Home</a>
-    
-        </div>
-        </div>
+       
 </body>
 </html>
