@@ -17,44 +17,12 @@ app.set('view engine', 'ejs')
 //adding static files to our html 
 app.use(express.static('public')) //these is the directory where all our static files will reside  
 
+//middleware for gettung contents from a post request 
+app.use(express.urlencoded({extended:true}))
+
 
 
 //testing mongodbs add feature for data 
-app.get('/add-blog', (req, res)=>{
-    const blog = new Blog({
-        title:'blog',
-        snippet:'my blog', 
-        body:'this is my first blog' ,
-    })
-
-    blog.save()
-    .then(result=>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-})
-
-app.get('/display', (req, res)=>{
-    Blog.find()
-    .then((result) =>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-})
-
-app.get('/single-blog', (req,res)=>{
-    Blog.findById('6433e55c4ebb940ddd168ece')
-    .then((result)=>{
-        res.send(result)
-    })
-    .catch((err)=>{
-        console.log(err)
-    })
-})
 
 //does the same thing as the one bellow 
 app.use(morgan('dev'))
@@ -83,8 +51,20 @@ app.get('/blogs', (req, res)=>{
     })
     .catch((err)=>{
         console.log(err)
+    })   
+})
+
+app.post('/blogs', (req, res)=>{
+    
+    const blog = new Blog(req.body)
+    blog.save()
+    .then(result=>{
+        res.redirect('/blogs')
     })
-   
+    .catch(err=>{
+        console.log(err)
+    })
+
 })
 
 app.get('/blogs/create', (req, res)=>{
