@@ -1,7 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
-const Blog = require('./models/blog')
+const blogRoutes = require('./routes/blogroutes')
 //deploy express app
 const app = express()
 
@@ -44,32 +44,9 @@ app.get('/about', (req, res)=>{
     res.render('about', {title:'about'})
 })
 
-app.get('/blogs', (req, res)=>{
-    Blog.find()
-    .then((result)=>{
-        res.render('home', {title:'All Blogs', blogs:result})
-    })
-    .catch((err)=>{
-        console.log(err)
-    })   
-})
+//blog routes   
+app.use(blogRoutes)
 
-app.post('/blogs', (req, res)=>{
-    
-    const blog = new Blog(req.body)
-    blog.save()
-    .then(result=>{
-        res.redirect('/blogs')
-    })
-    .catch(err=>{
-        console.log(err)
-    })
-
-})
-
-app.get('/blogs/create', (req, res)=>{
-    res.render('create', {title:'create'})
-})
 
 //redirecting 
 // app.get('/about-us', (req, res)=>{
